@@ -3,7 +3,6 @@ import Logo from "./components/Logo";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 
-/* eslint-disable react/prop-types */
 function App() {
   return (
     <div className="min-h-screen grid grid-rows-[auto_auto_1fr_auto] bg-gradient-to-br from-yellow-200 via-yellow-50 to-orange-100">
