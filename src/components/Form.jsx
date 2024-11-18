@@ -1,7 +1,18 @@
+import { useState } from "react";
+
 function Form() {
+  const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
   function handleSubmit(e) {
-    console.log("submit");
     e.preventDefault();
+
+    if (!description) return;
+    const newItem = { id: Date.now(), description, quantity, packed: false };
+    console.log(newItem);
+
+    setDescription("");
+    setQuantity(1);
   }
   return (
     <form
@@ -13,7 +24,11 @@ function Form() {
       </h3>
 
       <div className="flex items-center gap-4 w-full md:w-auto">
-        <select className="px-4 py-2 bg-orange-100 text-gray-800 rounded-full border border-orange-300 shadow-inner focus:ring-2 focus:ring-orange-500">
+        <select
+          className="px-4 py-2 bg-orange-100 text-gray-800 rounded-full border border-orange-300 shadow-inner focus:ring-2 focus:ring-orange-500"
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+        >
           {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
             <option value={num} key={num}>
               {num}
@@ -25,6 +40,8 @@ function Form() {
           type="text"
           placeholder="Enter items..."
           className="flex-1 px-4 py-2 bg-white text-gray-800 rounded-full border border-orange-300 shadow-inner focus:ring-2 focus:ring-orange-500"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
 
