@@ -10,11 +10,14 @@ function App() {
     setItems((items) => [...items, item]);
   }
 
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
   return (
     <div className="min-h-screen grid grid-rows-[auto_auto_1fr_auto] bg-gradient-to-br from-yellow-200 via-yellow-50 to-orange-100">
       <Logo />
       <Form onAddItems={handleItem} />
-      <PackingList items={items} />
+      <PackingList items={items} onDeleteItem={handleDeleteItem} />
       <Stats />
     </div>
   );
