@@ -9,7 +9,6 @@ function Form({ onAddItems }) {
 
     if (!description) return;
     const newItem = { id: Date.now(), description, quantity, packed: false };
-    console.log(newItem);
 
     onAddItems(newItem);
     setDescription("");
@@ -31,7 +30,7 @@ function Form({ onAddItems }) {
           onChange={(e) => setQuantity(Number(e.target.value))}
         >
           {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
-            <option value={num} key={num}>
+            <option value={num} key={num} id={quantity}>
               {num}
             </option>
           ))}
@@ -40,7 +39,8 @@ function Form({ onAddItems }) {
         <input
           type="text"
           placeholder="Enter items..."
-          className="flex-1 px-4 py-2 bg-white text-gray-800 rounded-full border border-orange-300 shadow-inner focus:ring-2 focus:ring-orange-500"
+          id={description}
+          className="flex-1 px-4 py-2 bg-orange-100 text-gray-800 rounded-full border border-orange-300 shadow-inner focus:ring-2 focus:ring-orange-500"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
