@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Item from "./Items";
 /* eslint-disable react/prop-types */
-function PackingList({ items, onDeleteItem, onToggleItem }) {
+function PackingList({ items, onDeleteItem, onToggleItem, onClearList }) {
   const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
@@ -17,6 +17,7 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
     sortedItems = items
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
+
   return (
     <div className="bg-brown-700 text-yellow-100 py-8 px-6 rounded-lg shadow-lg mx-4 flex flex-col justify-between">
       {/* List Items */}
@@ -33,7 +34,7 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
       </ul>
 
       {/* Dropdown placed at the center of the bottom */}
-      <div className="mt-8 flex justify-center ">
+      <div className="mt-8 flex justify-center space-x-2">
         <select
           className="px-4 py-2 bg-yellow-200 text-amber-800 rounded-lg shadow-md font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-200 transition-all uppercase text-xs"
           value={sortBy}
@@ -43,6 +44,12 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
           <option value="description">Sort by description</option>
           <option value="packed">Sort by packed</option>
         </select>
+        <button
+          className="px-4 py-2 bg-yellow-200 text-amber-800 rounded-lg shadow-md font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-200 transition-all uppercase text-xs"
+          onClick={onClearList}
+        >
+          Clear List
+        </button>
       </div>
     </div>
   );

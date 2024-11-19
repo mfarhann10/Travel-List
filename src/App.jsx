@@ -21,6 +21,12 @@ function App() {
       )
     );
   }
+
+  function handleClearList() {
+    const confirmed = window.confirm("Are you sure to delete all items?");
+
+    if (confirmed) setItems([]);
+  }
   return (
     <div className="min-h-screen grid grid-rows-[auto_auto_1fr_auto] bg-gradient-to-br from-yellow-200 via-yellow-50 to-orange-100">
       <Logo />
@@ -29,6 +35,7 @@ function App() {
         items={items}
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
+        onClearList={handleClearList}
       />
       <Stats items={items} />
     </div>
